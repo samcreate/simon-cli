@@ -11,7 +11,7 @@ require 'commander/import'
 program :version, '0.0.1'
 program :description, 'CLI tool for Simon, a simple MVC boilerplate'
  
-command :create, do |c|
+command :create do |c|
   c.syntax = 'my-simon create, [options]'
   c.summary = ''
   c.description = ''
@@ -24,7 +24,7 @@ command :create, do |c|
   end
 end
 
-command :add, do |c|
+command :add do |c|
   c.syntax = 'my-simon add, [options]'
   c.summary = ''
   c.description = ''
@@ -35,7 +35,7 @@ command :add, do |c|
   end
 end
 
-command :setup, do |c|
+command :setup do |c|
   c.syntax = 'my-simon setup, [options]'
   c.summary = ''
   c.description = ''
