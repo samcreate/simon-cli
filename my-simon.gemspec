@@ -5,13 +5,14 @@
 
 Gem::Specification.new do |s|
   s.name = "my-simon"
-  s.version = "0.1.2"
+  s.version = "0.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Aaron McGuire"]
   s.date = "2013-02-04"
   s.description = "CLI tool for Simon, the simple PHP project boilerplate!"
   s.email = "aaron.mcguire@evb.com"
+  s.executables = ["bin/simon"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.md",
@@ -27,6 +28,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "bin/simon",
     "lib/simon.rb",
     "my-simon.gemspec",
     "simon",
