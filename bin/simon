@@ -5,8 +5,11 @@ require "pathname"
 bin_file = Pathname.new(__FILE__).realpath
 $:.unshift File.expand_path("../../lib", bin_file)
 
+require 'simon'
 require 'rubygems'
 require 'commander/import'
+
+simon_controller = Simon.new
 
 program :version, '0.0.1'
 program :description, 'CLI tool for Simon, a simple MVC boilerplate'
@@ -19,8 +22,9 @@ command :create do |c|
   c.option '--some-switch', 'Some switch that does something'
   c.action do |args, options|
     # Do something or c.when_called My-simon::Commands::Create,
-    notify 'Create was called'
-    puts 'Create was called'
+    puts "\n Create called"
+    simon_controller.rename
+    
   end
 end
 
