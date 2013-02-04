@@ -14,6 +14,7 @@ Jeweler::Tasks.new do |gem|
   gem.description = "CLI tool for Simon, the simple PHP project boilerplate!"
   gem.email = "aaron.mcguire@evb.com"
   gem.authors = ["Aaron McGuire"]
+  gem.executables = ["bin/simon"]
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
