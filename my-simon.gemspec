@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.date = "2013-02-04"
   s.description = "CLI tool for Simon, the simple PHP project boilerplate!"
   s.email = "aaron.mcguire@evb.com"
-  s.executables = ["bin/simon"]
+  s.executables = ["/simon"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.md",
