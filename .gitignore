@@ -5,7 +5,6 @@ coverage.data
 # rdoc generated
 rdoc
 .svn
-bin
 obj
 # yard generated
 doc
