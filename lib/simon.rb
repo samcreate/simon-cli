@@ -51,4 +51,3 @@ command :help do |c|
     # Do something or c.when_called My-simon::Commands::Help
   end
 end
-

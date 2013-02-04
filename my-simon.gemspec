@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "lib/simon.rb",
+    "bin/simon.rb",
     "my-simon.gemspec",
     "simon",
     "test/helper.rb",
