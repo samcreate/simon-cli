@@ -46,9 +46,12 @@ command :add do |c|
     # Do something or c.when_called My-simon::Commands::Add,
       case args[0]
         when 'heroku'
-          cmd = "svn export #{svn_path_heroku} app  --quiet --force"
+          simon_controller.check_hidden
+          cmd = "svn export #{svn_path_heroku} ./ --quiet --force"
           Kernel::system(cmd)
           simon_controller.msg  "installing heroku files"
+        when 'section'
+          simon_controller.add_section
       end
   end
 end
