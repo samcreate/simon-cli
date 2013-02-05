@@ -1,5 +1,8 @@
 # encoding: utf-8
+
 require 'commander/import'
+require 'beanstalkapp'
+
 class Simon
 
   def rename
@@ -47,12 +50,24 @@ class Simon
       cmd = "find . -type f -name '*.tpl' -exec sed -i '' s/CHANGE_ME/#{@nms}/g {} +"
         Kernel::system(cmd)
 
-       # Kernel::system(cmd)
+      # database setup
       choice = choose("Setup Local DB?", :yes, :no)
 
       if choice === :yes
-         self.msg 'setting up Local DB'
+         
+        self.setup_db
+          
       end
+
+      # google analytics id
+      choice = choose("Do you want to set the Google Analytics tracking id?", :yes, :no)
+
+      if choice === :yes
+         
+        self.setup_analytics
+          
+      end
+      
 
       self.msg 'Setup complete!'
       self.make_hidden
@@ -114,10 +129,71 @@ class Simon
 
   end
 
+
+  def setup_db
+
+    # self.check_hidden
+
+    host = ask("What is the DB host? :  ") { |q| q.echo = true }
+    username = ask("What is the DB Username? :  ") { |q| q.echo = true }
+    password = ask("What is the DB password? :  ") { |q| q.echo = true }
+    dbname = ask("What is the DB name? :  ") { |q| q.echo = true }
+
+    config = "./app/www/lib/php/system/Config.php"
+    self.replace_once(config, "%l_host%", host)
+    self.replace_once(config, "%l_user%", username)
+    self.replace_once(config, "%l_pass%", password)
+    self.replace_once(config, "%l_dbname%", dbname)
+
+    self.msg "#{config} modified"
+    
+  end
+
+  def setup_analytics
+    tracking_id = ask("What is the GA tracking ID? :  ") { |q| q.echo = true }
+    config = "./app/www/lib/php/system/Config.php"
+    self.replace_once(config, "%google_id%", tracking_id);
+    self.msg "#{config} modified"
+  end
+
   def replace_once(file_name, search_string, replace_string)
     text = File.read(file_name)
     new_text = text.gsub(search_string, replace_string)
     File.open(file_name, "w") {|file| file.puts new_text}
+  end
+
+  def setup_beanstalk
+    subdomain = ask("What is the Beanstalk subdomain? :  ") { |q| q.echo = true }
+    username = ask("What is your Beanstalk Username? :  ") { |q| q.echo = true }
+    password = ask("What is your Beanstalk password? :  ") { |q| q.echo = true }
+    repo_name = ask("What do you want to call this repo? :  ") { |q| q.echo = true }
+
+    @repo_name = repo_name.gsub(/[^0-9A-Za-z-]/, '')
+
+    choice = choose("What kind of repo?", :git, :subversion,:mercurial);
+
+    if choice == :git
+      choice = "git"
+    elsif choice == :subversion
+      choice = "subversion"
+    elsif choice == :mercurial
+      choice = "mercurial"
+    end
+      
+
+    Beanstalk::API::Base.setup(
+      :domain   => subdomain,
+      :login    => username,
+      :password => password
+    )
+    query = {'name' => @repo_name, 'type_id' => choice, 'title' => @repo_name, 'color_label' => 'label-blue'}
+
+    response = Beanstalk::API::Repository::create(query)
+
+    self.msg "git clone #{response.repository_url}"
+
+    self.complete 
+    
   end
 
 end

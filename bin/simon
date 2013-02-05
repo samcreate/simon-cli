@@ -1,10 +1,16 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env ruby -v=false -W0
 # encoding: utf-8
+##                      $VERBOSE
+## -W0  NO Warnings     nil
+## -W1  Quiet           false
+## -W2  Verbose         true
+BEGIN { $VERBOSE = nil }
 
 # resolve bin path, ignoring symlinks
 require "pathname"
 bin_file = Pathname.new(__FILE__).realpath
 $:.unshift File.expand_path("../../lib", bin_file)
+
 
 require 'simon'
 require 'rubygems'
@@ -52,6 +58,8 @@ command :add do |c|
           simon_controller.msg  "installing heroku files"
         when 'section'
           simon_controller.add_section
+        when 'repo'
+          simon_controller.setup_beanstalk
       end
   end
 end
