@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "my-simon"
-  s.version = "0.1.6"
+  s.version = "0.1.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Aaron McGuire"]
-  s.date = "2013-02-04"
+  s.date = "2013-02-05"
   s.description = "CLI tool for Simon, the simple PHP project boilerplate!"
   s.email = "aaron.mcguire@evb.com"
   s.executables = ["/simon"]
