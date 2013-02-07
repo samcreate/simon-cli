@@ -189,8 +189,9 @@ class Simon
     query = {'name' => @repo_name, 'type_id' => choice, 'title' => @repo_name, 'color_label' => 'label-blue'}
 
     response = Beanstalk::API::Repository::create(query)
-
-    self.msg "git clone #{response.repository_url}"
+    puts "(cd into the app directory) "
+    puts "command line: $ git init ."
+    puts "command line: $ git remote add origin #{response.repository_url}"
 
     self.complete 
     
