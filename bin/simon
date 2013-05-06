@@ -23,11 +23,11 @@ program :version, '0.0.1'
 program :description, 'CLI tool for Simon, a simple MVC boilerplate'
  
 command :create do |c|
-  c.syntax = 'my-simon create, [options]'
-  c.summary = ''
-  c.description = ''
+  c.syntax = 'simon create'
+  c.summary = ' Gets boilerplate'
+  c.description = 'Pulls down latest version of the boilerplate and sets up local enviroment variables.'
   c.example 'description', 'command example'
-  c.option '--some-switch', 'Some switch that does something'
+  c.option '', ''
   c.action do |args, options|
     # Do something or c.when_called My-simon::Commands::Create,
     simon_controller.msg  ">>> simon's requesting the boilerplate <<<"
@@ -43,11 +43,11 @@ command :create do |c|
 end
 
 command :add do |c|
-  c.syntax = 'my-simon add, [options]'
-  c.summary = ''
-  c.description = ''
-  c.example 'description', 'command example'
-  c.option '--some-switch', 'Some switch that does something'
+  c.syntax = 'simon add [section, heroku, repo]'
+  c.summary = 'adds: A section, Heroku dependencies, or a Beanstalk repo'
+  c.description = 'adds: A section, Heroku dependencies, or a Beanstalk repo'
+  c.example 'Examples: ', 'simon add section, simon add heroku, simon add repo'
+  c.option '', ''
   c.action do |args, options|
     # Do something or c.when_called My-simon::Commands::Add,
       case args[0]
