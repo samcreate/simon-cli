@@ -50,6 +50,15 @@ class Simon
       cmd = "find . -type f -name '*.tpl' -exec sed -i '' s/CHANGE_ME/#{@nms}/g {} +"
         Kernel::system(cmd)
 
+      # localhost setup
+      choice = choose("Setup Localhost domain?", :yes, :no)
+
+      if choice === :yes
+         
+        self.setup_localhost
+          
+      end
+
       # database setup
       choice = choose("Setup Local DB?", :yes, :no)
 
@@ -126,6 +135,18 @@ class Simon
       end
       self.complete 
 
+
+  end
+
+
+  def setup_localhost
+
+    host = ask("What is the virtual host name? :  ") { |q| q.echo = true }
+     
+      config = "./app/www/lib/php/system/Config.php"
+      self.replace_once(config, "%l_vhost%", host)
+
+    self.msg "#{config} modified"
 
   end
 

@@ -30,12 +30,12 @@ command :create do |c|
   c.option '--some-switch', 'Some switch that does something'
   c.action do |args, options|
     # Do something or c.when_called My-simon::Commands::Create,
-   
+    simon_controller.msg  ">>> simon's requesting the boilerplate <<<"
     cmd = "svn export #{svn_path} app --quiet"
       Kernel::system(cmd)
     cmd = "cd ./app/"
       Kernel::system(cmd)
-    simon_controller.msg  "Boilerplate added"
+    simon_controller.msg  "-----> Boilerplate added"
 
     simon_controller.setup
     
