@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "my-simon"
-  s.version = "0.2.2"
+  s.version = "0.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Aaron McGuire"]
-  s.date = "2013-05-06"
+  s.date = "2013-07-06"
   s.description = "CLI tool for Simon, the simple PHP project boilerplate!"
   s.email = "aaron.mcguire@evb.com"
   s.executables = ["/simon"]
@@ -37,7 +37,7 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/samcreate/simon-cli"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.23"
+  s.rubygems_version = "1.8.25"
   s.summary = "CLI tool for Simon"
 
   if s.respond_to? :specification_version then
@@ -46,28 +46,28 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<activeresource>, ["= 2.3.5"])
       s.add_runtime_dependency(%q<beanstalkapp>, ["= 1.6.1"])
-      s.add_runtime_dependency(%q<highline>, ["= 1.6.15"])
+      s.add_runtime_dependency(%q<highline>, ["= 1.6.19"])
       s.add_runtime_dependency(%q<commander>, ["= 4.1.3"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<rdoc>, ["= 3.12"])
       s.add_development_dependency(%q<bundler>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, ["= 1.8.4"])
       s.add_development_dependency(%q<simplecov>, [">= 0"])
-      s.add_development_dependency(%q<highline>, ["= 1.6.15"])
+      s.add_development_dependency(%q<highline>, ["= 1.6.19"])
       s.add_development_dependency(%q<commander>, ["= 4.1.3"])
       s.add_development_dependency(%q<activeresource>, ["= 2.3.5"])
       s.add_development_dependency(%q<beanstalkapp>, ["= 1.6.1"])
     else
       s.add_dependency(%q<activeresource>, ["= 2.3.5"])
       s.add_dependency(%q<beanstalkapp>, ["= 1.6.1"])
-      s.add_dependency(%q<highline>, ["= 1.6.15"])
+      s.add_dependency(%q<highline>, ["= 1.6.19"])
       s.add_dependency(%q<commander>, ["= 4.1.3"])
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<rdoc>, ["= 3.12"])
       s.add_dependency(%q<bundler>, [">= 0"])
       s.add_dependency(%q<jeweler>, ["= 1.8.4"])
       s.add_dependency(%q<simplecov>, [">= 0"])
-      s.add_dependency(%q<highline>, ["= 1.6.15"])
+      s.add_dependency(%q<highline>, ["= 1.6.19"])
       s.add_dependency(%q<commander>, ["= 4.1.3"])
       s.add_dependency(%q<activeresource>, ["= 2.3.5"])
       s.add_dependency(%q<beanstalkapp>, ["= 1.6.1"])
@@ -75,14 +75,14 @@ Gem::Specification.new do |s|
   else
     s.add_dependency(%q<activeresource>, ["= 2.3.5"])
     s.add_dependency(%q<beanstalkapp>, ["= 1.6.1"])
-    s.add_dependency(%q<highline>, ["= 1.6.15"])
+    s.add_dependency(%q<highline>, ["= 1.6.19"])
     s.add_dependency(%q<commander>, ["= 4.1.3"])
     s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<rdoc>, ["= 3.12"])
     s.add_dependency(%q<bundler>, [">= 0"])
     s.add_dependency(%q<jeweler>, ["= 1.8.4"])
     s.add_dependency(%q<simplecov>, [">= 0"])
-    s.add_dependency(%q<highline>, ["= 1.6.15"])
+    s.add_dependency(%q<highline>, ["= 1.6.19"])
     s.add_dependency(%q<commander>, ["= 4.1.3"])
     s.add_dependency(%q<activeresource>, ["= 2.3.5"])
     s.add_dependency(%q<beanstalkapp>, ["= 1.6.1"])
