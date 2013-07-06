@@ -92,7 +92,7 @@ class Simon
     # controller
     self.msg "#Adding section: #{@section}"
     ctrl_startpoint = "./scaffolding/simon/controller.tpl"
-    ctrl_endpoint = "./www/lib/php/controller/#{@section}.php"
+    ctrl_endpoint = "./www/php/controller/#{@section}.php"
     cmd = "cp #{ctrl_startpoint} #{ctrl_endpoint}"
       Kernel::system(cmd);
       self.replace_once(ctrl_endpoint, "%name%", @section)
@@ -100,7 +100,7 @@ class Simon
 
     # view
     view_startpoint = "./scaffolding/simon/view.tpl";
-    view_endpoint = "./www/lib/php/view/#{@section}.php";
+    view_endpoint = "./www/php/view/#{@section}.php";
     cmd = "cp #{view_startpoint} #{view_endpoint}";
       Kernel::system(cmd);
       self.msg "#{view_endpoint} added"
@@ -108,16 +108,16 @@ class Simon
     # javascript
     @js_section = name_space.gsub(/[^0-9A-Za-z]/, '')
     javascript_startpoint = "./scaffolding/standards/js_template.js";
-    javascript_endpoint = "./www/lib/js/#{@section}.js";
+    javascript_endpoint = "./www/js/#{@section}.js";
     cmd = "cp #{javascript_startpoint} #{javascript_endpoint}"
       Kernel::system( cmd );
       self.replace_once(javascript_endpoint, "CLASS_NAME", @js_section);
-      self.replace_once("./www/lib/php/template/footer.php", "<!-- END: DEV javascript -->", "<script src=\"/lib/js/#{@section}.js\" type=\"text/javascript\" charset=\"utf-8\"></script>\n\t\t<!-- END: DEV javascript -->");
-      self.replace_once("./www/lib/js/master.js", "\*\/", "\* @depends #{@section}.js \n \*\/");
+      self.replace_once("./www/php/template/footer.php", "<!-- END: DEV javascript -->", "<script src=\"/lib/js/#{@section}.js\" type=\"text/javascript\" charset=\"utf-8\"></script>\n\t\t<!-- END: DEV javascript -->");
+      self.replace_once("./www/js/master.js", "\*\/", "\* @depends #{@section}.js \n \*\/");
       self.msg "#{javascript_endpoint} added"
 
     # routes
-    routes = "./www/lib/php/system/config.routes.php";
+    routes = "./www/php/system/config.routes.php";
     self.replace_once(routes, "?>", "Router::add('/#{@section}', DIR_CTRL.'/#{@section}.php');\n ?>");
     self.msg "#{routes} route added #{@section}"
 
@@ -127,7 +127,7 @@ class Simon
 
       if choice === :yes
         model_startpoint = "./scaffolding/simon/model.tpl"
-        model_endpoint = "./www/lib/php/model/#{@section}.php"
+        model_endpoint = "./www/php/model/#{@section}.php"
         cmd = "cp  #{model_startpoint} #{model_endpoint}"
           Kernel::system( cmd );
           self.replace_once(model_endpoint, "%name%", @section)
@@ -143,7 +143,7 @@ class Simon
 
     host = ask("What is the virtual host name? :  ") { |q| q.echo = true }
      
-      config = "./app/www/lib/php/system/Config.php"
+      config = "./app/www/php/system/Config.php"
       self.replace_once(config, "%l_vhost%", host)
 
     self.msg "#{config} modified"
@@ -160,7 +160,7 @@ class Simon
     password = ask("What is the DB password? :  ") { |q| q.echo = true }
     dbname = ask("What is the DB name? :  ") { |q| q.echo = true }
 
-    config = "./app/www/lib/php/system/Config.php"
+    config = "./app/www/php/system/Config.php"
     self.replace_once(config, "%l_host%", host)
     self.replace_once(config, "%l_user%", username)
     self.replace_once(config, "%l_pass%", password)
@@ -172,7 +172,7 @@ class Simon
 
   def setup_analytics
     tracking_id = ask("What is the GA tracking ID? :  ") { |q| q.echo = true }
-    config = "./app/www/lib/php/system/Config.php"
+    config = "./app/www/php/system/Config.php"
     self.replace_once(config, "%google_id%", tracking_id);
     self.msg "#{config} modified"
   end
