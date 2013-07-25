@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 require 'commander/import'
-require 'beanstalkapp'
+
 
 class Simon
 
@@ -183,39 +183,40 @@ class Simon
     File.open(file_name, "w") {|file| file.puts new_text}
   end
 
-  def setup_beanstalk
-    subdomain = ask("What is the Beanstalk subdomain? :  ") { |q| q.echo = true }
-    username = ask("What is your Beanstalk Username? :  ") { |q| q.echo = true }
-    password = ask("What is your Beanstalk password? :  ") { |q| q.echo = true }
-    repo_name = ask("What do you want to call this repo? :  ") { |q| q.echo = true }
+  # TODO get beanstalk to fix their shit.
+  # def setup_beanstalk
+  #   subdomain = ask("What is the Beanstalk subdomain? :  ") { |q| q.echo = true }
+  #   username = ask("What is your Beanstalk Username? :  ") { |q| q.echo = true }
+  #   password = ask("What is your Beanstalk password? :  ") { |q| q.echo = true }
+  #   repo_name = ask("What do you want to call this repo? :  ") { |q| q.echo = true }
 
-    @repo_name = repo_name.gsub(/[^0-9A-Za-z-]/, '')
+  #   @repo_name = repo_name.gsub(/[^0-9A-Za-z-]/, '')
 
-    choice = choose("What kind of repo?", :git, :subversion,:mercurial);
+  #   choice = choose("What kind of repo?", :git, :subversion,:mercurial);
 
-    if choice == :git
-      choice = "git"
-    elsif choice == :subversion
-      choice = "subversion"
-    elsif choice == :mercurial
-      choice = "mercurial"
-    end
+  #   if choice == :git
+  #     choice = "git"
+  #   elsif choice == :subversion
+  #     choice = "subversion"
+  #   elsif choice == :mercurial
+  #     choice = "mercurial"
+  #   end
       
 
-    Beanstalk::API::Base.setup(
-      :domain   => subdomain,
-      :login    => username,
-      :password => password
-    )
-    query = {'name' => @repo_name, 'type_id' => choice, 'title' => @repo_name, 'color_label' => 'label-blue'}
+  #   Beanstalk::API::Base.setup(
+  #     :domain   => subdomain,
+  #     :login    => username,
+  #     :password => password
+  #   )
+  #   query = {'name' => @repo_name, 'type_id' => choice, 'title' => @repo_name, 'color_label' => 'label-blue'}
 
-    response = Beanstalk::API::Repository::create(query)
-    puts "(cd into the app directory) "
-    puts "command line: $ git init ."
-    puts "command line: $ git remote add origin #{response.repository_url}"
+  #   response = Beanstalk::API::Repository::create(query)
+  #   puts "(cd into the app directory) "
+  #   puts "command line: $ git init ."
+  #   puts "command line: $ git remote add origin #{response.repository_url}"
 
-    self.complete 
+  #   self.complete 
     
-  end
+  # end
 
 end

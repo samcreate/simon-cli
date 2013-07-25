@@ -58,8 +58,6 @@ command :add do |c|
           simon_controller.msg  "installing heroku files"
         when 'section'
           simon_controller.add_section
-        when 'repo'
-          simon_controller.setup_beanstalk
       end
   end
 end
