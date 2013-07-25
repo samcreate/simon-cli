@@ -112,7 +112,7 @@ class Simon
     cmd = "cp #{javascript_startpoint} #{javascript_endpoint}"
       Kernel::system( cmd );
       self.replace_once(javascript_endpoint, "CLASS_NAME", @js_section);
-      self.replace_once("./www/php/template/footer.php", "<!-- END: DEV javascript -->", "<script src=\"/lib/js/#{@section}.js\" type=\"text/javascript\" charset=\"utf-8\"></script>\n\t\t<!-- END: DEV javascript -->");
+      self.replace_once("./www/php/template/footer.php", "<!-- END: DEV javascript -->", "<script src=\"/js/#{@section}.js\" type=\"text/javascript\" charset=\"utf-8\"></script>\n\t\t<!-- END: DEV javascript -->");
       self.replace_once("./www/js/master.js", "\*\/", "\* @depends #{@section}.js \n \*\/");
       self.msg "#{javascript_endpoint} added"
 
