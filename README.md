@@ -4,7 +4,8 @@ My-Simon ( ͡° ͜ʖ ͡°)﻿
 Simple PHP MVC Boilerplate / Scaffolding 
 
 
-Think rails but dummer (and simpler)
+Think rails but dummer (and simpler). Does it make sense to make a Ruby gem for a php framework? No. Does it matter? No.
+
 
 
 Using Simon to setup the boilerplate
