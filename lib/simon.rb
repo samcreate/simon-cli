@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 require 'commander/import'
-
+require 'open-uri'
 
 class Simon
 
@@ -112,7 +112,7 @@ class Simon
     cmd = "cp #{javascript_startpoint} #{javascript_endpoint}"
       Kernel::system( cmd );
       self.replace_once(javascript_endpoint, "CLASS_NAME", @js_section);
-      self.replace_once("./www/php/template/footer.php", "<!-- END: DEV javascript -->", "<script src=\"/js/#{@section}.js\" type=\"text/javascript\" charset=\"utf-8\"></script>\n\t\t<!-- END: DEV javascript -->");
+      self.replace_once("./www/php/template/footer.php", "<!-- END: app -->", "<script src=\"/js/#{@section}.js\" type=\"text/javascript\" charset=\"utf-8\"></script>\n\t\t<!-- END: app -->");
       self.replace_once("./www/js/master.js", "\*\/", "\* @depends #{@section}.js \n \*\/");
       self.msg "#{javascript_endpoint} added"
 
@@ -181,6 +181,40 @@ class Simon
     text = File.read(file_name)
     new_text = text.gsub(search_string, replace_string)
     File.open(file_name, "w") {|file| file.puts new_text}
+  end
+
+  def add_js(js_path = nil)
+
+    self.check_hidden
+ 
+    if js_path.nil?
+      js_path = ask("What's the URL to the javascript file? :  ") { |q| q.echo = true }
+    end
+
+    @js_file_name = js_path.split("/").last
+  
+    @choice = choose("Which directory do you want to download the file to?", :jquery, :plugins)
+
+    @web_contents  = open(js_path) {|f| f.read }
+
+    js_endpoint = "./www/js/#{@choice}/#{@js_file_name}"
+    cmd = "touch #{js_endpoint}"
+    self.msg "#{js_endpoint} added"
+
+    Kernel::system( cmd );
+    File.open(js_endpoint, 'w') { |file| file.write(@web_contents) }
+
+    if @choice === :jquery
+      self.replace_once("./www/php/template/footer.php", "<!-- END: jquery -->", "<script src=\"/js/jquery/#{@js_file_name}\" type=\"text/javascript\" charset=\"utf-8\"></script>\n\t\t<!-- END: jquery -->");
+      self.replace_once("./www/js/master.js", "\*\/", "\* @depends jquery/#{@js_file_name} \n \*\/");
+    else
+      self.replace_once("./www/php/template/footer.php", "<!-- END: plugins -->", "<script src=\"/js/plugins/#{@js_file_name}\" type=\"text/javascript\" charset=\"utf-8\"></script>\n\t\t<!-- END: plugins -->");
+      self.replace_once("./www/js/master.js", "\*\/", "\* @depends plugins/#{@js_file_name} \n \*\/");
+    end
+
+
+    self.complete
+    
   end
 
   # TODO get beanstalk to fix their shit.

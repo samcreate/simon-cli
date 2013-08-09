@@ -51,6 +51,8 @@ command :add do |c|
   c.action do |args, options|
     # Do something or c.when_called My-simon::Commands::Add,
       case args[0]
+        when 'js'
+          simon_controller.add_js args[1]
         when 'heroku'
           simon_controller.check_hidden
           cmd = "svn export #{svn_path_heroku} ./ --quiet --force"
