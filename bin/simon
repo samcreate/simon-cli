@@ -19,7 +19,7 @@ require 'commander/import'
 simon_controller = Simon.new
 svn_path = "https://samcreate@evolveit.svn.beanstalkapp.com/project_boilerplate/trunk/default"
 svn_path_heroku = "https://samcreate@evolveit.svn.beanstalkapp.com/project_boilerplate/trunk/heroku"
-program :version, '0.0.1'
+program :version, '0.3.1'
 program :description, 'CLI tool for Simon, a simple MVC boilerplate'
  
 command :create do |c|
@@ -30,6 +30,7 @@ command :create do |c|
   c.option '--some-switch', 'Some switch that does something'
   c.action do |args, options|
     # Do something or c.when_called My-simon::Commands::Create,
+    simon_controller.check_4_update
     simon_controller.msg  ">>> simon's requesting the boilerplate <<<"
     cmd = "svn export #{svn_path} app --quiet"
       Kernel::system(cmd)
@@ -50,6 +51,7 @@ command :add do |c|
   c.option '--some-switch', 'Some switch that does something'
   c.action do |args, options|
     # Do something or c.when_called My-simon::Commands::Add,
+      simon_controller.check_4_update
       case args[0]
         when 'js'
           simon_controller.add_js args[1]
@@ -60,6 +62,8 @@ command :add do |c|
           simon_controller.msg  "installing heroku files"
         when 'section'
           simon_controller.add_section
+        when 'test'
+         
       end
   end
 end
@@ -71,6 +75,7 @@ command :setup do |c|
   c.example 'description', 'command example'
   c.option '--some-switch', 'Some switch that does something'
   c.action do |args, options|
+    simon_controller.check_4_update
     simon_controller.setup
   end
 end
@@ -82,6 +87,7 @@ command :help do |c|
   c.example 'description', 'command example'
   c.option '--some-switch', 'Some switch that does something'
   c.action do |args, options|
+    simon_controller.check_4_update
     # Do something or c.when_called My-simon::Commands::Help
   end
 end
