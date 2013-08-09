@@ -33,3 +33,8 @@ Using Simon to add a javascript file to be downloaded locally and to add it to t
 simon add js [url to js file]
 ```
 
+Using Simon to add basic Backbone
+```php
+simon add backbone
+```
+

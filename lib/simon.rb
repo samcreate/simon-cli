@@ -229,6 +229,42 @@ class Simon
 
   end
 
+  def add_backbone
+
+    self.check_hidden
+
+    # get backbone js included
+    @bb_source  = open("http://backbonejs.org/backbone-min.js") {|f| f.read }
+    js_endpoint = "./www/js/plugins/backbone-min.js"
+    cmd = "touch #{js_endpoint}"
+      Kernel::system( cmd );
+    File.open(js_endpoint, 'w') { |file| file.write(@bb_source) }
+    self.replace_once("./www/php/template/footer.php", "<!-- END: plugins -->", "<script src=\"/js/plugins/backbone-min.js\" type=\"text/javascript\" charset=\"utf-8\"></script>\n\t\t<!-- END: plugins -->");
+    self.replace_once("./www/js/master.js", "\*\/", "\* @depends plugins/backbone-min.js \n \*\/");
+
+    # setup director structure
+    cmd = "mkdir ./www/js/app && mkdir ./www/js/app/views && mkdir ./www/js/app/models && mkdir ./www/js/app/collections"
+      Kernel::system( cmd );
+
+    # add application
+    javascript_startpoint = "./scaffolding/standards/backbone/app.js";
+    javascript_endpoint = "./www/js/app/app.js";
+    cmd = "cp #{javascript_startpoint} #{javascript_endpoint}"
+      Kernel::system( cmd );
+    self.replace_once("./www/php/template/footer.php", "<!-- END: app -->", "<script src=\"/js/app/app.js\" type=\"text/javascript\" charset=\"utf-8\"></script>\n\t\t<!-- END: app -->");
+    self.replace_once("./www/js/master.js", "\*\/", "\* @depends app/app.js \n \*\/");
+
+    # message log to the user
+    self.msg "./www/js/app/views added"
+    self.msg "./www/js/app/models added"
+    self.msg "./www/js/app/collections added"
+    self.msg "./www/js/plugins/backbone-min.js added"
+    self.msg "./www/js/app/app.js added"
+    self.msg "./www/php/template/footer.php modified"
+    self.msg "./www/js/master.js modified"
+    self.complete
+  end
+
   # TODO get beanstalk to fix their shit.
   # def setup_beanstalk
   #   subdomain = ask("What is the Beanstalk subdomain? :  ") { |q| q.echo = true }

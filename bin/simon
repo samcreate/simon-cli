@@ -19,7 +19,7 @@ require 'commander/import'
 simon_controller = Simon.new
 svn_path = "https://samcreate@evolveit.svn.beanstalkapp.com/project_boilerplate/trunk/default"
 svn_path_heroku = "https://samcreate@evolveit.svn.beanstalkapp.com/project_boilerplate/trunk/heroku"
-program :version, '0.3.3'
+program :version, '0.3.4'
 program :description, 'CLI tool for Simon, a simple MVC boilerplate'
  
 command :create do |c|
@@ -71,9 +71,9 @@ command :add do |c|
           simon_controller.msg  "installing heroku files"
         when 'section'
           simon_controller.add_section
-        when 'test'
+        when 'backbone'
 
-
+          simon_controller.add_backbone
          
       end
   end
