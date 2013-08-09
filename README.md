@@ -1,4 +1,4 @@
-Simon ( ͡° ͜ʖ ͡°)﻿
+My-Simon ( ͡° ͜ʖ ͡°)﻿
 =====
 
 Simple PHP MVC Boilerplate / Scaffolding 
