@@ -19,7 +19,7 @@ require 'commander/import'
 simon_controller = Simon.new
 svn_path = "https://samcreate@evolveit.svn.beanstalkapp.com/project_boilerplate/trunk/default"
 svn_path_heroku = "https://samcreate@evolveit.svn.beanstalkapp.com/project_boilerplate/trunk/heroku"
-program :version, '0.3.2'
+program :version, '0.3.3'
 program :description, 'CLI tool for Simon, a simple MVC boilerplate'
  
 command :create do |c|
@@ -32,11 +32,20 @@ command :create do |c|
     # Do something or c.when_called My-simon::Commands::Create,
     simon_controller.check_4_update
     simon_controller.msg  ">>> simon's requesting the boilerplate <<<"
+     uris = %w[ 
+           https://evolveit.svn.beanstalkapp.com/project_boilerplate/trunk/default 
+           http://google.com 
+           http://yahoo.com
+           ]
+         progress uris do |uri|
+           res = open uri
+          
+         end
     cmd = "svn export #{svn_path} app --quiet"
       Kernel::system(cmd)
     cmd = "cd ./app/"
       Kernel::system(cmd)
-    simon_controller.msg  "Boilerplate added"
+   
 
     simon_controller.setup
     
@@ -63,6 +72,8 @@ command :add do |c|
         when 'section'
           simon_controller.add_section
         when 'test'
+
+
          
       end
   end
