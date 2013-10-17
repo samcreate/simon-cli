@@ -38,16 +38,16 @@ class Simon
 
       @nms = Regexp.escape(name_space) # escape any special characters  
       # javascript
-      cmd = "find . -type f -name '*.js' -exec sed -i '' s/CHANGE_ME/#{@nms}/g {} +"
+      cmd = "find . -type f -name '*.js' -exec sed -i'' s/CHANGE_ME/#{@nms}/g {} +"
         Kernel::system(cmd)
        # php
-      cmd = "find . -type f -name '*.php' -exec sed -i '' s/CHANGE_ME/#{@nms}/g {} +"
+      cmd = "find . -type f -name '*.php' -exec sed -i'' s/CHANGE_ME/#{@nms}/g {} +"
         Kernel::system(cmd)
       # html
-      cmd = "find . -type f -name '*.html' -exec sed -i '' s/CHANGE_ME/#{@nms}/g {} +"
+      cmd = "find . -type f -name '*.html' -exec sed -i'' s/CHANGE_ME/#{@nms}/g {} +"
         Kernel::system(cmd)
       # tpl
-      cmd = "find . -type f -name '*.tpl' -exec sed -i '' s/CHANGE_ME/#{@nms}/g {} +"
+      cmd = "find . -type f -name '*.tpl' -exec sed -i'' s/CHANGE_ME/#{@nms}/g {} +"
         Kernel::system(cmd)
 
       # localhost setup
