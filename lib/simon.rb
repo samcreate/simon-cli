@@ -34,21 +34,40 @@ class Simon
   end
 
   def setup
+      puts RUBY_PLATFORM
       name_space = ask("Namespace [a-zA-Z0-9_] :  ") { |q| q.echo = true }
 
-      @nms = Regexp.escape(name_space) # escape any special characters  
-      # javascript
-      cmd = "find . -type f -name '*.js' -exec sed -i'' s/CHANGE_ME/#{@nms}/g {} +"
-        Kernel::system(cmd)
-       # php
-      cmd = "find . -type f -name '*.php' -exec sed -i'' s/CHANGE_ME/#{@nms}/g {} +"
-        Kernel::system(cmd)
-      # html
-      cmd = "find . -type f -name '*.html' -exec sed -i'' s/CHANGE_ME/#{@nms}/g {} +"
-        Kernel::system(cmd)
-      # tpl
-      cmd = "find . -type f -name '*.tpl' -exec sed -i'' s/CHANGE_ME/#{@nms}/g {} +"
-        Kernel::system(cmd)
+      @nms = Regexp.escape(name_space) # escape any special characters
+
+      # Use different 'sed' syntax if on linux vs. osx.  On linux there is no space between -i and ''
+
+      if RUBY_PLATFORM =~ /linux/
+        # javascript
+        cmd = "find . -type f -name '*.js' -exec sed -i'' s/CHANGE_ME/#{@nms}/g {} +"
+          Kernel::system(cmd)
+         # php
+        cmd = "find . -type f -name '*.php' -exec sed -i'' s/CHANGE_ME/#{@nms}/g {} +"
+          Kernel::system(cmd)
+        # html
+        cmd = "find . -type f -name '*.html' -exec sed -i'' s/CHANGE_ME/#{@nms}/g {} +"
+          Kernel::system(cmd)
+        # tpl
+        cmd = "find . -type f -name '*.tpl' -exec sed -i'' s/CHANGE_ME/#{@nms}/g {} +"
+          Kernel::system(cmd)
+      else
+        # javascript
+        cmd = "find . -type f -name '*.js' -exec sed -i '' s/CHANGE_ME/#{@nms}/g {} +"
+          Kernel::system(cmd)
+         # php
+        cmd = "find . -type f -name '*.php' -exec sed -i '' s/CHANGE_ME/#{@nms}/g {} +"
+          Kernel::system(cmd)
+        # html
+        cmd = "find . -type f -name '*.html' -exec sed -i '' s/CHANGE_ME/#{@nms}/g {} +"
+          Kernel::system(cmd)
+        # tpl
+        cmd = "find . -type f -name '*.tpl' -exec sed -i '' s/CHANGE_ME/#{@nms}/g {} +"
+          Kernel::system(cmd)
+      end
 
       # localhost setup
       choice = choose("Setup Localhost domain?", :yes, :no)
