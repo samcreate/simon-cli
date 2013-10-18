@@ -34,7 +34,6 @@ class Simon
   end
 
   def setup
-      puts RUBY_PLATFORM
       name_space = ask("Namespace [a-zA-Z0-9_] :  ") { |q| q.echo = true }
 
       @nms = Regexp.escape(name_space) # escape any special characters
