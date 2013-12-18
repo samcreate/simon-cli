@@ -33,7 +33,7 @@ command :create do |c|
     simon_controller.check_4_update
     simon_controller.msg  ">>> simon's requesting the boilerplate <<<"
      uris = %w[ 
-           https://github.com/samcreate/simon-cli/trunk/boilerplate/default 
+           https://raw.github.com/samcreate/simon-cli/master/README.md 
            http://google.com 
            http://yahoo.com
            ]
