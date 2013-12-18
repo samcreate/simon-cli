@@ -239,7 +239,7 @@ class Simon
 
     
     @local_version = program :version
-    @remote_version  = open("https://raw.github.com/samcreate/simon-cli/master/VERSION") {|f| f.read }
+    @remote_version  = open("https://raw.github.com/samcreate/simon-cli/master/gem/VERSION") {|f| f.read }
 
     if @local_version.strip !=  @remote_version.strip 
       puts "\n\n( ͡ʘ ʖ̲ ͡ʘ) - Out of Date! You're running #{@local_version}. Please update to the latest version #{@remote_version} \n\n ---> run: gem update my-simon\n\n"
