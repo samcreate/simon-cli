@@ -33,6 +33,24 @@ class Simon
     outFile.close
   end
 
+  def addinstall(args)
+
+    case args[0]
+        when 'js'
+          self.add_js args[1]
+        when 'heroku'
+          self.check_hidden
+          cmd = "svn export #{svn_path_heroku} ./ --quiet --force"
+          Kernel::system(cmd)
+          self.msg  "installing heroku files"
+        when 'section'
+          self.add_section
+        when 'backbone'
+          self.add_backbone
+      end
+
+  end
+
   def setup
       name_space = ask("Namespace [a-zA-Z0-9_] :  ") { |q| q.echo = true }
 

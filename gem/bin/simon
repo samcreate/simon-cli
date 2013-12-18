@@ -61,21 +61,21 @@ command :add do |c|
   c.action do |args, options|
     # Do something or c.when_called My-simon::Commands::Add,
       simon_controller.check_4_update
-      case args[0]
-        when 'js'
-          simon_controller.add_js args[1]
-        when 'heroku'
-          simon_controller.check_hidden
-          cmd = "svn export #{svn_path_heroku} ./ --quiet --force"
-          Kernel::system(cmd)
-          simon_controller.msg  "installing heroku files"
-        when 'section'
-          simon_controller.add_section
-        when 'backbone'
+      simon_controller.addinstall(args)
+  end
+end
 
-          simon_controller.add_backbone
-         
-      end
+command :install do |c|
+  c.syntax = 'my-simon install, [options]'
+  c.summary = ''
+  c.description = ''
+  c.example 'description', 'command example'
+  c.option '--some-switch', 'Some switch that does something'
+  c.action do |args, options|
+    # Do something or c.when_called My-simon::Commands::Add,
+      simon_controller.check_4_update
+      simon_controller.addinstall(args)
+      
   end
 end
 
