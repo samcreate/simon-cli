@@ -17,8 +17,8 @@ require 'rubygems'
 require 'commander/import'
 
 simon_controller = Simon.new
-svn_path = "https://samcreate@evolveit.svn.beanstalkapp.com/project_boilerplate/trunk/default"
-svn_path_heroku = "https://samcreate@evolveit.svn.beanstalkapp.com/project_boilerplate/trunk/heroku"
+svn_path = "https://github.com/samcreate/simon-cli/trunk/boilerplate/default"
+svn_path_heroku = "https://github.com/samcreate/simon-cli/trunk/boilerplate/heroku"
 program :version, '0.3.6'
 program :description, 'CLI tool for Simon, a simple MVC boilerplate'
  
@@ -33,7 +33,7 @@ command :create do |c|
     simon_controller.check_4_update
     simon_controller.msg  ">>> simon's requesting the boilerplate <<<"
      uris = %w[ 
-           https://evolveit.svn.beanstalkapp.com/project_boilerplate/trunk/default 
+           https://github.com/samcreate/simon-cli/trunk/boilerplate/default 
            http://google.com 
            http://yahoo.com
            ]
