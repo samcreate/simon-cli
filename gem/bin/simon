@@ -19,7 +19,7 @@ require 'commander/import'
 simon_controller = Simon.new
 svn_path = "https://github.com/samcreate/simon-cli/trunk/boilerplate/default"
 svn_path_heroku = "https://github.com/samcreate/simon-cli/trunk/boilerplate/heroku"
-program :version, '0.3.9'
+program :version, '0.3.10'
 program :description, 'CLI tool for Simon, a simple MVC boilerplate'
  
 command :create do |c|
@@ -41,7 +41,7 @@ command :create do |c|
            res = open uri
           
          end
-    cmd = "svn export #{svn_path} app --quiet"
+    cmd = "svn export #{svn_path} app --quiet --trust-server-cert --non-interactive"
       Kernel::system(cmd)
     cmd = "cd ./app/"
       Kernel::system(cmd)
