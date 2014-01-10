@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby -v=false -W0
+#!/usr/bin/env -W0
 # encoding: utf-8
 ##                      $VERBOSE
 ## -W0  NO Warnings     nil
@@ -41,7 +41,7 @@ command :create do |c|
            res = open uri
           
          end
-    cmd = "svn export #{svn_path} app --quiet --trust-server-cert --non-interactive"
+    cmd = "svn export #{svn_path} app --quiet --trust-server-cert --non-interactive --force"
       Kernel::system(cmd)
     cmd = "cd ./app/"
       Kernel::system(cmd)
